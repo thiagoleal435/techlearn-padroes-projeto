@@ -112,36 +112,33 @@ classDiagram
 
 Foi criada a classe `LoggerService` no pacote `techlearn.logging`. A classe usa construtor privado e uma instância eager `static final`, disponibilizada por `getInstance()`. O método `log(String)` imprime a mensagem com timestamp no formato `yyyy-MM-dd HH:mm:ss`.
 
-[LINK DO COMMIT AQUI]
-![print](docs/img/passo1.png)
+[Commit da etapa](https://github.com/thiagoleal435/techlearn-padroes-projeto/commit/0674903a0eb9b30ae65885f9e56b9dce1c3004a4)
+![Execução do Singleton](docs/img/print1.png)
 
 ### Passo 2 – Iterator base e Null Object
 
 Foi criada a interface genérica própria `Iterator<T>`, sem utilizar `java.util.Iterator`. Também foi implementado `NullIterator<T>`, que representa o iterador vazio das folhas do Composite. Assim, uma `Aula` pode participar do percurso sem tratamento especial no código de navegação.
 
-[LINK DO COMMIT AQUI]
-![print](docs/img/passo2.png)
+[Commit da etapa](https://github.com/thiagoleal435/techlearn-padroes-projeto/commit/5501be285a6c0cb7ac0c55378fa936249b18316d)
 
 ### Passo 3 – Composite
 
 `ComponenteCatalogo` define a abstração comum para `Aula` e `Modulo`. `Aula` funciona como folha, enquanto `Modulo` mantém sua lista interna de componentes, calcula a duração recursivamente e exibe seus filhos. As operações de composição registram mensagens usando o Singleton de logging.
 
-[LINK DO COMMIT AQUI]
-![print](docs/img/passo3.png)
+[Commit da etapa](https://github.com/thiagoleal435/techlearn-padroes-projeto/commit/e205b031ffd384356ed2d1861c0c29c17834c083)
 
 ### Passo 4 – Iterator do módulo
 
 Foi criado `ModuloIterator`, que percorre a lista de componentes com uma posição interna. O método `Modulo.criarIterator()` passou a retornar esse iterador, mantendo a coleção encapsulada e oferecendo ao cliente apenas as operações `hasNext()` e `next()`.
 
-[LINK DO COMMIT AQUI]
-![print](docs/img/passo4.png)
+[Commit da etapa](https://github.com/thiagoleal435/techlearn-padroes-projeto/commit/cd2d639b1dbb6a50444ec0558d4f8c404897a226)
 
 ### Passo 5 – Integração no `Main`
 
 O `Main` monta o curso de Engenharia de Software Moderna, com dois módulos e suas aulas, registra as operações e exibe a ementa. Em seguida, percorre os itens do curso principal pelo Iterator e registra o nome e a duração acumulada de cada módulo.
 
-[LINK DO COMMIT AQUI]
-![print](docs/img/passo5.png)
+[Commit da etapa](https://github.com/thiagoleal435/techlearn-padroes-projeto/commit/4ff4c293bdd3cf1cc386db46383657cd8bbae03d)
+![Integração dos três padrões](docs/img/print2.png)
 
 ## 4. Decisões de projeto
 
@@ -163,6 +160,12 @@ A separação entre a estrutura do Composite e a lógica de percurso do Iterator
 
 Assim, o cliente apenas compõe `new FiltroIterator(new ComposicaoIterator(curso), predicado)` e continua consumindo a mesma interface `Iterator`, sem conhecer a lista interna dos módulos nem alterar a montagem do curso. A nova regra foi adicionada por extensão dos iteradores, preservando o código existente e permitindo reutilizar a mesma estrutura para outros filtros.
 
+### Evidências da execução do desafio
+
+![Execução do filtro de aulas curtas](docs/img/print3.png)
+
+![Saída final do filtro de aulas curtas](docs/img/print4.png)
+
 ## 6. Como executar
 
 ### IntelliJ IDEA
@@ -179,11 +182,12 @@ O programa monta a hierarquia, exibe a ementa, percorre os módulos e lista as a
 
 | Etapa | Mensagem | Link |
 |---|---|---|
-| Estrutura inicial | `chore: estrutura inicial do projeto` | [LINK DO COMMIT AQUI] |
-| 1 – Singleton | `feat(singleton): adiciona LoggerService thread-safe` | [LINK DO COMMIT AQUI] |
-| Correção de execução | `fix: adiciona ponto de entrada para executar o logger` | [LINK DO COMMIT AQUI] |
-| 2 – Iterator base | `feat(iterator): adiciona interface Iterator e NullIterator` | [LINK DO COMMIT AQUI] |
-| 3 – Composite | `feat(composite): adiciona ComponenteCatalogo, Aula e Modulo` | [LINK DO COMMIT AQUI] |
-| 4 – ModuloIterator | `feat(iterator): adiciona ModuloIterator e integra ao Modulo` | [LINK DO COMMIT AQUI] |
-| 5 – Integração | `feat: adiciona Main integrando os três padrões` | [LINK DO COMMIT AQUI] |
-| 6 – Desafio | `feat(desafio): filtro de aulas com duração <= 45 min` | [LINK DO COMMIT AQUI] |
+| Estrutura inicial | `chore: estrutura inicial do projeto` | [commit](https://github.com/thiagoleal435/techlearn-padroes-projeto/commit/a6e25c7) |
+| 1 – Singleton | `feat(singleton): adiciona LoggerService thread-safe` | [commit](https://github.com/thiagoleal435/techlearn-padroes-projeto/commit/0674903a0eb9b30ae65885f9e56b9dce1c3004a4) |
+| Correção de execução | `fix: adiciona ponto de entrada para executar o logger` | [commit](https://github.com/thiagoleal435/techlearn-padroes-projeto/commit/4f6e0952f1118474ab087a96b286a4dfd57d5c0e) |
+| 2 – Iterator base | `feat(iterator): adiciona interface Iterator e NullIterator` | [commit](https://github.com/thiagoleal435/techlearn-padroes-projeto/commit/5501be285a6c0cb7ac0c55378fa936249b18316d) |
+| 3 – Composite | `feat(composite): adiciona ComponenteCatalogo, Aula e Modulo` | [commit](https://github.com/thiagoleal435/techlearn-padroes-projeto/commit/e205b031ffd384356ed2d1861c0c29c17834c083) |
+| 4 – ModuloIterator | `feat(iterator): adiciona ModuloIterator e integra ao Modulo` | [commit](https://github.com/thiagoleal435/techlearn-padroes-projeto/commit/cd2d639b1dbb6a50444ec0558d4f8c404897a226) |
+| 5 – Integração | `feat: adiciona Main integrando os três padrões` | [commit](https://github.com/thiagoleal435/techlearn-padroes-projeto/commit/4ff4c293bdd3cf1cc386db46383657cd8bbae03d) |
+| 6 – Desafio | `feat(desafio): filtro de aulas com duração <= 45 min` | [commit](https://github.com/thiagoleal435/techlearn-padroes-projeto/commit/232c96c9a72c0b928e352a01f3cf7e152148ab16) |
+| Documentação final | `docs: relatório final com prints e resposta do desafio` | [commit](https://github.com/thiagoleal435/techlearn-padroes-projeto/commit/8088ff22c753578070665eec5f440224d21a463b) |
