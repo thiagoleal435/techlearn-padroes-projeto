@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import techlearn.iterator.Iterator;
-import techlearn.iterator.NullIterator;
+import techlearn.iterator.ModuloIterator;
 import techlearn.logging.LoggerService;
 
 public class Modulo extends ComponenteCatalogo {
@@ -51,6 +51,6 @@ public class Modulo extends ComponenteCatalogo {
 
     @Override
     public Iterator<ComponenteCatalogo> criarIterator() {
-        return new NullIterator<>();
+        return new ModuloIterator(subComponentes);
     }
 }
